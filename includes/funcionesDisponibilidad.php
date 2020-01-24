@@ -120,11 +120,11 @@ class funcionesDisponibilidad{
 
 		if($base != 1){
 
-		$sql = "SELECT dp.id, uni.economico,sc.nombreSucursal,op.nombreOperacion,dp.fechaIngreso,dp.fechaPromesa,dp.fechaEntrega,dp.motivo,dp.costoReparacion,datediff(now(),dp.fechaIngreso) as Dias,es.nombreEstatus FROM disponibilidad dp
+		$sql = "SELECT dp.id, uni.economico,sc.nombreSucursal,op.nombreOperacion,dp.fechaIngreso,dp.fechaPromesa,dp.fechaEntrega,dp.motivo,dp.costoReparacion,datediff(dp.fechaEntrega,dp.fechaIngreso) as Dias,es.nombreEstatus FROM disponibilidad dp
 			inner join unidades uni on dp.unidades_id = uni.id
 			inner join sucursales sc on uni.sucursales_id = sc.id
 			inner join estatus es on dp.estatus_id = es.id
-			inner join operaciones op on sc.operaciones_id = op.id WHERE sc.id=:bs;";
+			inner join operaciones op on sc.operaciones_id = op.id WHERE sc.id=:bs;"
 
 		$stmt = $conexion->prepare($sql);
 		$stmt->bindValue(':bs',$base);
@@ -141,7 +141,7 @@ class funcionesDisponibilidad{
 
 		}else{
 
-		$sql = "SELECT dp.id, uni.economico,sc.nombreSucursal,op.nombreOperacion,dp.fechaIngreso,dp.fechaPromesa,dp.fechaEntrega,dp.motivo,dp.costoReparacion,datediff(now(),dp.fechaIngreso) as Dias,es.nombreEstatus FROM disponibilidad dp
+		$sql = "SELECT dp.id, uni.economico,sc.nombreSucursal,op.nombreOperacion,dp.fechaIngreso,dp.fechaPromesa,dp.fechaEntrega,dp.motivo,dp.costoReparacion,datediff(dp.fechaEntrega,dp.fechaIngreso) as Dias,es.nombreEstatus FROM disponibilidad dp
 			inner join unidades uni on dp.unidades_id = uni.id
 			inner join sucursales sc on uni.sucursales_id = sc.id
 			inner join estatus es on dp.estatus_id = es.id
