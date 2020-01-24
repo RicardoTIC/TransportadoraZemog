@@ -1,5 +1,5 @@
 <?php 
 
 
-define('url', 'http://192.168.0.109/ZEMOG/');
+define('url', 'http://201.127.198.5/TransportadoraZemog/');
 define('Empresa', 'Trasportadora Zemog');
